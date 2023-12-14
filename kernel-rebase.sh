@@ -54,7 +54,7 @@ for i in ${OEM_DIR_LIST}; do
 done
 
 cd -
-cp -r oem/* kernel/
+rsync -av oem/* kernel/
 cd kernel
 
 for i in ${OEM_DIR_LIST}; do
