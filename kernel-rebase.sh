@@ -9,14 +9,12 @@ NORMAL='\033[0m'
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 # Variables
-ACK_REPO="https://android.googlesource.com/kernel/common.git"
 OEM_KERNEL=${1}
-ACK_BRANCH=${2}
 
 # Help Function
 usage() {
-	echo -e "${0} \"link to oem kernel source (git)\" \"ack-branch\"
-	>> eg: ${0} \"https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git -b dandelion-q-oss\" \"android-4.9-q\""
+	echo -e "${0} \"link to oem kernel source (git)\"
+	>> eg: ${0} \"https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git -b dandelion-q-oss\" "
 }
 
 # Abort Function
@@ -28,19 +26,8 @@ abort() {
 # Clone the OEM Kernel Source
 git clone --depth=1 --single-branch $(echo ${OEM_KERNEL}) oem
 
-# Clone the Android Common Kernel Source
-git clone --single-branch -b ${ACK_BRANCH} ${ACK_REPO} kernel
-
-# Get the OEM Kernel's Version
-cd oem
-OEM_KERNEL_VERSION=$(make kernelversion)
-cd -
-
-# Hard Reset ACK to ${OEM_KERNEL_VERSION}
-cd kernel
-OEM_KERNEL_VER_SHORT_SHA=$(git log --oneline ${ACK_BRANCH} Makefile | grep -i ${OEM_KERNEL_VERSION} | grep -i merge | cut -d ' ' -f1)
-git reset --hard ${OEM_KERNEL_VER_SHORT_SHA}
-cd -
+# Clone the ALPS Common Kernel Source
+git clone https://github.com/techyminati/alps-4.19 -b alps-mp-t0.mp1.tc2sp1-pr1-V1.90 kernel
 
 # Get the list of Directories of the OEM Kernel
 cd oem
@@ -67,7 +54,7 @@ git commit -s -m "Import Remaining OEM Changes"
 
 cd -
 
-echo -e ${GREEN}"Your Kernel has been successfully rebased to ACK. Please check kernel/"${NORMAL}
+echo -e ${GREEN}"Your Kernel has been successfully rebased to ALPS. Please check kernel/"${NORMAL}
 
 # Exit
 exit 0
