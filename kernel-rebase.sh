@@ -27,8 +27,7 @@ abort() {
 git clone --depth=1 --single-branch $(echo ${OEM_KERNEL}) oem
 
 # Clone the ALPS Common Kernel Source
-git clone https://github.com/techyminati/alps-4.19 -b alps-mp-t0.mp1.tc2sp1-pr1-V1.90 kernel
-
+git clone https://github.com/prathamdby/alps-S-4.14 kernel
 # Get the list of Directories of the OEM Kernel
 cd oem
 OEM_DIR_LIST=$(find -type d -printf "%P\n" | grep -v / | grep -v .git)
