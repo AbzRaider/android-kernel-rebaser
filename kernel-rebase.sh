@@ -4,6 +4,7 @@
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NORMAL='\033[0m'
+OEM=Realme
 
 # Project Directory
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
@@ -55,7 +56,7 @@ cd kernel
 
 for i in ${OEM_DIR_LIST_MISCMTK}; do
 	git add drivers/misc/mediatek/${i}
-	git commit -s -m "mediatek: ${i}: Import OEM Changes"
+	git commit -s -m "mediatek: ${i}: Import $OEM Changes"
 done
 
 cd ..
@@ -82,7 +83,7 @@ cd kernel
 
 for i in ${OEM_DIR_LIST_KERNEL}; do
         git add kernel/${i}
-        git commit -s -m "kernel: ${i}: Import OEM Changes"
+        git commit -s -m "kernel: ${i}: Import $OEM Changes"
 done
 
 cd ..
@@ -108,7 +109,7 @@ cd kernel
 
 for i in ${OEM_DIR_LIST_SOUND}; do
         git add sound/${i}
-        git commit -s -m "sound: ${i}: Import OEM Changes"
+        git commit -s -m "sound: ${i}: Import $OEM Changes"
 done
 
 cd ..
@@ -141,7 +142,7 @@ cd kernel
 
 for i in ${OEM_DIR_LIST_TOUCHSCREEN}; do
         git add drivers/input/touchscreen/${i}
-        git commit -s -m "touchscreen: ${i}: Import OEM Changes"
+        git commit -s -m "touchscreen: ${i}: Import $OEM Changes"
 done
 
 cd ..
@@ -191,7 +192,7 @@ cd kernel
 
 for i in ${OEM_DIR_LIST_DRV}; do
         git add drivers/${i}
-        git commit -s -m "drivers: ${i}: Import OEM Changes"
+        git commit -s -m "drivers: ${i}: Import $OEM Changes"
 done
 
 cd ..
@@ -213,7 +214,7 @@ cd kernel
 
 for i in ${OEM_DIR_LIST}; do
 	git add ${i}
-	git commit -s -m "${i}: Import OEM Changes"
+	git commit -s -m "${i}: Import $OEM Changes"
 done
 
 git add .
